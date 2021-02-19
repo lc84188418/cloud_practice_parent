@@ -1,0 +1,28 @@
+#feign客户端
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-consumer-hystrix-payment #微服务名称
+eureka:
+  instance:
+    instance-id: consumer80
+  client:
+#    false表示不向注册中心注册自己
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+#设置feign客户端超时时间（openfeign默认支持ribbon）
+ribbon:
+  #建立连接所用时间
+  ConnectionTimeout: 5000
+  #建立连接后从服务器读取到可用资源所用的时间
+  ReadTimeout: 50000
+logging:
+  level:
+    #feign日志监控什么接口,debug级别
+   com.lc.homepage.service.PaymentFeignService: debug
+#使客户端支持hystrix服务降级
+feign:
+  hystrix:
+    enabled: true

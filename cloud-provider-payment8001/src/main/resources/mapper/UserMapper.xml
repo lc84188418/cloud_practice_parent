@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lc.homepage.dao.UserMapper" >
+  <resultMap type="com.lc.homepage.entity.User" id="SysUserMap">
+    <result column="user_id" property="userId" jdbcType="INTEGER"/>
+    <result column="username" property="username" jdbcType="VARCHAR"/>
+    <result column="password" property="password" jdbcType="VARCHAR"/>
+    <result column="police_num" property="policeNum" jdbcType="VARCHAR"/>
+    <result column="sex" property="sex" jdbcType="VARCHAR"/>
+    <result column="age" property="age" jdbcType="INTEGER"/>
+    <result column="nominal" property="nominal" jdbcType="VARCHAR"/>
+    <result column="portrait" property="portrait" jdbcType="VARCHAR"/>
+    <result column="tel" property="tel" jdbcType="VARCHAR"/>
+    <result column="political_outlook" property="politicalOutlook" jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, username, password,police_num,sex,age,nominal,portrait,tel,political_outlook
+  </sql>
+  <!--通过实体作为筛选条件查询-->
+  <select id="queryall" resultType="com.lc.homepage.entity.User">
+    select
+    user_id, username, password, police_num, sex, age, nominal, portrait, tel, political_outlook
+    from police_app.sys_user
+    <where>
+      <if test="userId != null">
+        and user_id = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="username != null and username != ''">
+        and username = #{username,jdbcType=VARCHAR}
+      </if>
+      <if test="password != null and password != ''">
+        and password = #{password,jdbcType=VARCHAR}
+      </if>
+      <if test="policeNum != null">
+        and police_num = #{policeNum,jdbcType=VARCHAR}
+      </if>
+      <if test="sex != null and sex != ''">
+        and sex = #{sex,jdbcType=VARCHAR}
+      </if>
+      <if test="age != null">
+        and age = #{age,jdbcType=INTEGER}
+      </if>
+      <if test="nominal != null and nominal != ''">
+        and nominal = #{nominal,jdbcType=VARCHAR}
+      </if>
+      <if test="portrait != null and portrait != ''">
+        and portrait = #{portrait,jdbcType=VARCHAR}
+      </if>
+      <if test="tel != null and tel != ''">
+        and tel = #{tel,jdbcType=VARCHAR}
+      </if>
+      <if test="politicalOutlook != null and politicalOutlook != ''">
+        and political_outlook = #{politicalOutlook,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <!--新增所有列-->
+  <insert id="insert" keyProperty="userId" useGeneratedKeys="true">
+        insert into sys_user(username, password, police_num, sex, age, nominal, portrait, tel, political_outlook)
+        values (#{username}, #{password}, #{policeNum}, #{sex}, #{age}, #{nominal}, #{portrait}, #{tel}, #{politicalOutlook})
+    </insert>
+  <insert id="insertSelective" keyProperty="userId" useGeneratedKeys="true">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null and username != ''">
+        username,
+      </if>
+      <if test="password != null and password != ''">
+        password,
+      </if>
+      <if test="policeNum != null">
+        police_num,
+      </if>
+      <if test="sex != null and sex != ''">
+        sex,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="nominal != null and nominal != ''">
+        nominal,
+      </if>
+      <if test="portrait != null and portrait != ''">
+        portrait,
+      </if>
+      <if test="tel != null and tel != ''">
+        tel,
+      </if>
+      <if test="politicalOutlook != null and politicalOutlook != ''">
+        political_outlook,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null and username != ''">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null and password != ''">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="policeNum != null and policeNum != ''">
+        #{policeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex != ''">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nominal != null and nominal != ''">
+        #{nominal,jdbcType=VARCHAR},
+      </if>
+      <if test="portrait != null and portrait != ''">
+        #{portrait,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null and tel != ''">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="politicalOutlook != null and politicalOutlook != ''">
+        #{politicalOutlook,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!--通过用户名查询单个-->
+  <select id="userGetByUserName" resultMap="SysUserMap">
+        select * from police_app.sys_user
+        where username = #{username,jdbcType=VARCHAR}
+    </select>
+</mapper>
