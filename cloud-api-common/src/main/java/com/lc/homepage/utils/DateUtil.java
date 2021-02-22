@@ -3,6 +3,7 @@ package com.lc.homepage.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,5 +43,10 @@ public class DateUtil {
         calendar.add(Calendar.DAY_OF_MONTH,1);
         date = calendar.getTime();
         return date;
+    }
+    public static ZonedDateTime getZonedDateTime(){
+        //默认时区
+        ZonedDateTime zonedDateTime = ZonedDateTime.now();
+        return zonedDateTime;
     }
 }

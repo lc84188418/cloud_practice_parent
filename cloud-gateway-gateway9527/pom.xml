@@ -13,13 +13,13 @@
 
 
     <dependencies>
-<!--        <dependency>-->
-<!--            &lt;!&ndash; 引入公共模块cloud-api-common&ndash;&gt;-->
-<!--            <groupId>org.example</groupId>-->
-<!--            <artifactId>cloud-api-common</artifactId>-->
-<!--            <version>${project.version}</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <!-- 引入公共模块cloud-api-common-->
+            <groupId>org.example</groupId>
+            <artifactId>cloud-api-common</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
 
         <dependency>
             <!--gateway-->
@@ -31,6 +31,10 @@
             <!--eureka-client-->
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 
