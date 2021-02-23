@@ -1,0 +1,18 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center #微服务名称
+    cloud:
+      config:
+        server:
+          git:
+            uri: https://github.com/lc84188418/cloud_practice_parent.git #GitHub仓库地址
+            search-paths: #搜索目录
+              - cloud_practice_parent
+        label: master #读取分支
+#eureka配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
