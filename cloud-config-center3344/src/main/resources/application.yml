@@ -7,7 +7,8 @@ spring:
       config:
         server:
           git:
-            uri: https://github.com/lc84188418/cloud_practice_parent.git #GitHub仓库地址
+#            uri: http://github.com/lc84188418/cloud_practice_parent.git #GitHub仓库地址
+            uri: git@github.com:lc84188418/cloud_practice_parent.git #GitHub仓库地址
             search-paths: #搜索目录
               - cloud_practice_parent
         label: master #读取分支
@@ -16,3 +17,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:7001/eureka/
+#Rabbitmq配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+#Rabbitmq相关配置，暴露bus刷新配置的端点
+management:
+  endpoints: #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
